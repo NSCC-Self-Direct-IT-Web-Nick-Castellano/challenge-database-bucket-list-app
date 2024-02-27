@@ -68,7 +68,7 @@ fun BucketListScreen(
                 onCheckboxChange = { viewModel.toggleItemCompleteStatus(item) },
                 // we use this custom route to dynamically navigate to the detail page of list item
                 onItemClick = {
-                    Log.d("UI_Event", "Clicked on a list item")
+//                    Log.d("UI_Event", "Clicked on a list item")
 
                     viewModel.navigateToItemDetails(
                         navController = navController,

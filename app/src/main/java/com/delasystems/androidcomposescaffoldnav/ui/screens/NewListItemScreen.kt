@@ -91,7 +91,9 @@ fun NewListItemScreen(
                 }
             },
             label = { Text("Description") },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+            ,
             // Set maximum number of lines
             maxLines = 5,
 

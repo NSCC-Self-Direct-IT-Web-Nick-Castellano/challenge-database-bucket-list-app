@@ -9,8 +9,10 @@ import androidx.compose.material.Checkbox
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.delasystems.androidcomposescaffoldnav.data.BucketListItemModel
 
 @Composable
@@ -26,7 +28,8 @@ fun BucketListItemRow(
     ) {
         Text(
             text = item.title,
-            style = MaterialTheme.typography.h4,
+            style = MaterialTheme.typography.subtitle1.copy(fontSize = 20.sp),
+
             modifier = Modifier
                 .weight(1f)
                 .padding(end = 8.dp)
@@ -34,6 +37,7 @@ fun BucketListItemRow(
                     Log.d("UI_Event", "Clicked on a list item")
                     onItemClick(item)
                 }
+                .align(Alignment.CenterVertically)
         )
         Checkbox(
             checked = item.isCompleted,

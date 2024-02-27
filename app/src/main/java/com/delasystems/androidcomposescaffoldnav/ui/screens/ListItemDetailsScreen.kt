@@ -36,7 +36,7 @@ fun ListItemDetailsScreen(navController: NavController, viewModel: BucketListVie
                 Text(
                     text = selectedItem.title,
                     style = MaterialTheme.typography.h4,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
                 Text(
                     text = selectedItem.description,
@@ -53,7 +53,10 @@ fun ListItemDetailsScreen(navController: NavController, viewModel: BucketListVie
                     .align(Alignment.CenterHorizontally)
 
             ) {
-                Text("Back")
+                Text(
+                    text = "Back",
+                    style = MaterialTheme.typography.h5
+                )
             }
         } else {
             Text("Item not found", style = MaterialTheme.typography.h5)

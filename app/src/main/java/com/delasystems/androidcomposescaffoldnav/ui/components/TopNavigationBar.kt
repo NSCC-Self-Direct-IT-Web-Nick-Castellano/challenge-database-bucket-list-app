@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.delasystems.androidcomposescaffoldnav.R
+import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
 
 @Composable
 fun TopNavigationBar(
@@ -20,7 +21,15 @@ fun TopNavigationBar(
     navController: NavController
 ) {
     TopAppBar (
-        title = { Text(currentRoute) },
+        title = {
+            // if the route is the detail page, then have a different title to the current route
+            // because we are dynamically displaying that
+            if (currentRoute.contains(NavDestinations.ItemDetailsScreen.route)) {
+                Text("List Item Detail")
+            } else {
+                Text(currentRoute)
+            }
+        },
         modifier = Modifier
             .background(MaterialTheme.colors.primary)
         ,
