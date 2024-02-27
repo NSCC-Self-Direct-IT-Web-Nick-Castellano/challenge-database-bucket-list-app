@@ -6,8 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.delasystems.androidcomposescaffoldnav.data.BucketListDataSource
 import com.delasystems.androidcomposescaffoldnav.data.BucketListItemModel
+import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
 import java.lang.Exception
 
 // this holds the app state and makes modifications to it
@@ -65,5 +67,18 @@ class BucketListViewModel : ViewModel() {
     }
     fun deleteItem(item: BucketListItemModel) {
         _bucketListItems.value = _bucketListItems.value.filterNot { it == item }
+    }
+
+    fun navigateToItemDetails(navController: NavController, item: BucketListItemModel) {
+        val itemId = bucketListItems.value.indexOf(item)
+        if (itemId != -1) {
+            val route = "${NavDestinations.ItemDetailsScreen.route}/$itemId"
+            navController.navigate(route)
+        }
+    }
+
+    // get the list item by id
+    fun getBucketListItemById(itemIndex: Int): BucketListItemModel? {
+        return bucketListItems.value.get(itemIndex)
     }
 }

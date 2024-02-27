@@ -19,6 +19,7 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 */
 package com.delasystems.androidcomposescaffoldnav.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,8 +38,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import androidx.navigation.Navigator
 import com.delasystems.androidcomposescaffoldnav.data.BucketListItemModel
+import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
 import com.delasystems.androidcomposescaffoldnav.ui.BucketListViewModel
 import com.delasystems.androidcomposescaffoldnav.ui.components.BucketListItemRow
 
@@ -58,12 +62,21 @@ fun BucketListScreen(
     ) {
 
         items(items = items, itemContent = {item ->
+            // get the item id
             BucketListItemRow(
                 item = item,
-                onCheckboxChange = { viewModel.toggleItemCompleteStatus(item) }
+                onCheckboxChange = { viewModel.toggleItemCompleteStatus(item) },
+                // we use this custom route to dynamically navigate to the detail page of list item
+                onItemClick = {
+                    Log.d("UI_Event", "Clicked on a list item")
+
+                    viewModel.navigateToItemDetails(
+                        navController = navController,
+                        item = item
+                    )
+                }
             )
         })
     }
 
 }
-

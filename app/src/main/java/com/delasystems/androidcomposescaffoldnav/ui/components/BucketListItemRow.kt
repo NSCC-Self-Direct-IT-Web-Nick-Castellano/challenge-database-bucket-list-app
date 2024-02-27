@@ -1,5 +1,6 @@
 package com.delasystems.androidcomposescaffoldnav.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,13 +16,13 @@ import com.delasystems.androidcomposescaffoldnav.data.BucketListItemModel
 @Composable
 fun BucketListItemRow(
     item: BucketListItemModel,
-    onCheckboxChange: (BucketListItemModel) -> Unit
+    onCheckboxChange: (BucketListItemModel) -> Unit,
+    onItemClick: (BucketListItemModel) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable { /* Handle row click */ }
     ) {
         Text(
             text = item.title,
@@ -29,6 +30,10 @@ fun BucketListItemRow(
             modifier = Modifier
                 .weight(1f)
                 .padding(end = 8.dp)
+                .clickable {
+                    Log.d("UI_Event", "Clicked on a list item")
+                    onItemClick(item)
+                }
         )
         Checkbox(
             checked = item.isCompleted,

@@ -1,6 +1,7 @@
 package com.delasystems.androidcomposescaffoldnav.ui
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
@@ -22,10 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.delasystems.androidcomposescaffoldnav.R
 //import com.delasystems.androidcomposescaffoldnav.navigation.FavoritesScreenList
 //import com.delasystems.androidcomposescaffoldnav.navigation.HistoryScreenList
@@ -73,8 +76,16 @@ fun AndroidComposeScaffoldNavApp() {
             composable(route = NavDestinations.NewItemScreen.route) {
                 NewListItemScreen(navController=navController, viewModel = viewModel)
             }
-            composable(route = NavDestinations.ItemDetailsScreen.route) {
-                ListItemDetailsScreen(navController)
+
+            // this screen is being dynamically displayed, so we need to pass extra
+            // arguments to do so
+            composable(
+                route = "${NavDestinations.ItemDetailsScreen.route}/{itemId}",
+                arguments = listOf(navArgument("itemId") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val itemId = backStackEntry.arguments?.getString("itemId")
+
+                ListItemDetailsScreen(navController, viewModel, itemId)
             }
         }
     }
