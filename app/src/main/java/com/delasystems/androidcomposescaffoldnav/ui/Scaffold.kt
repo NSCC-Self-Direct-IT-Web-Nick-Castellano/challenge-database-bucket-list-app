@@ -23,6 +23,7 @@ import com.delasystems.androidcomposescaffoldnav.R
 //import com.delasystems.androidcomposescaffoldnav.navigation.FavoritesScreenList
 //import com.delasystems.androidcomposescaffoldnav.navigation.HistoryScreenList
 import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
+import com.delasystems.androidcomposescaffoldnav.ui.components.BottomNavigationBar
 import com.delasystems.androidcomposescaffoldnav.ui.screens.BucketListScreen
 import com.delasystems.androidcomposescaffoldnav.ui.screens.ListItemDetailsScreen
 import com.delasystems.androidcomposescaffoldnav.ui.screens.NewListItemScreen
@@ -32,40 +33,14 @@ import com.delasystems.androidcomposescaffoldnav.ui.screens.NewListItemScreen
 @Composable
 fun AndroidComposeScaffoldNavApp() {
     val navController = rememberNavController()
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = backStackEntry?.destination?.route
     Scaffold(
         bottomBar = {
-            BottomNavigation(
-            ) {
-                val backStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = backStackEntry?.destination?.route
-
-
-                BottomNavigationItem(
-                    onClick = { navController.navigate(NavDestinations.ListScreen.route)},
-                    icon = { Icon(
-                        Icons.Filled.List,
-                        contentDescription = "Bucket List")
-                    },
-                    label = { Text(text = "Bucket List") },
-                    alwaysShowLabel = true,
-                    selectedContentColor = Color.White,
-                    unselectedContentColor = Color.White.copy(0.4f),
-                    selected = currentRoute == NavDestinations.ListScreen.route
-                )
-
-                BottomNavigationItem(
-                    onClick = { navController.navigate(NavDestinations.NewItemScreen.route)},
-                    icon = { Icon(
-                        Icons.Filled.Add,
-                        contentDescription = "New Item")
-                    },
-                    label = { Text(text = "New Item") },
-                    alwaysShowLabel = true,
-                    selectedContentColor = Color.White,
-                    unselectedContentColor = Color.White.copy(0.4f),
-                    selected = currentRoute == NavDestinations.ListScreen.route
-                )
-            }
+            BottomNavigationBar(
+                navController = navController,
+                currentRoute = currentRoute
+            )
         }
     ) {
         NavHost(
