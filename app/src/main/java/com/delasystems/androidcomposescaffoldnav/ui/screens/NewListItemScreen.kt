@@ -31,6 +31,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -66,18 +67,35 @@ fun NewListItemScreen(
 
         OutlinedTextField(
             value = title,
-            onValueChange = { title = it },
+            onValueChange = {
+                // only change the text if the value has not surpassed
+                // the limit
+                if (it.length <= MAX_TITLE_LENGTH) {
+                    title = it
+                }
+            },
             label = { Text("Title") },
             modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+
+        TextField(
             value = description,
-            onValueChange = { description = it },
+            onValueChange = {
+                // only change the text if the value has not surpassed
+                // the limit
+                if (it.length <= MAX_DESCRIPTION_LENGTH) {
+                    description = it
+                }
+            },
             label = { Text("Description") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            // Set maximum number of lines
+            maxLines = 5,
+
+
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -103,3 +121,6 @@ fun NewListItemScreen(
         }
     }
 }
+
+private const val MAX_DESCRIPTION_LENGTH = 200 // Maximum number of characters allowed in the description
+private const val MAX_TITLE_LENGTH = 50 // Maximum number of characters allowed in the description
