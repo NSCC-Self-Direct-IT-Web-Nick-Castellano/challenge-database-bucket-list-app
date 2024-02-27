@@ -95,7 +95,6 @@ fun NewListItemScreen(
             // Set maximum number of lines
             maxLines = 5,
 
-
         )
 
         Spacer(modifier = Modifier.height(16.dp))
