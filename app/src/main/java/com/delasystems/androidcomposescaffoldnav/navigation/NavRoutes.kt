@@ -20,22 +20,11 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 package com.delasystems.androidcomposescaffoldnav.navigation
 
 sealed class NavDestinations(val route: String) {
-//    object SearchScreen : NavDestinations("searchscreen")
-//    object SearchScreen2 : NavDestinations("searchscreen2")
-//    object SearchScreen3 : NavDestinations("searchscreen3")
-//
-//    object HistoryScreen : NavDestinations("historyscreen")
-//    object HistoryScreen2 : NavDestinations("historyscreen2")
-//    object HistoryScreen3 : NavDestinations("historyscreen3")
-//
-//    object FavoritesScreen : NavDestinations("favoritesscreen")
-//    object FavoritesScreen2 : NavDestinations("favoritesscreen2")
-//    object FavoritesScreen3 : NavDestinations("favoritesscreen3")
 
     // the new routes
-    object ListScreen: NavDestinations("list")
-    object NewItemScreen: NavDestinations("new")
-    object ItemDetailsScreen: NavDestinations("details")
+    object ListScreen: NavDestinations("Bucket List")
+    object NewItemScreen: NavDestinations("New List Item")
+    object ItemDetailsScreen: NavDestinations("List Item Details")
 
 }
 
@@ -45,21 +34,3 @@ val navigationItemsList = listOf<String>(
     NavDestinations.NewItemScreen.route,
     NavDestinations.ItemDetailsScreen.route,
 )
-//
-//val SearchScreenList = listOf<String>(
-//    NavDestinations.SearchScreen.route,
-//    NavDestinations.SearchScreen2.route,
-//    NavDestinations.SearchScreen3.route
-//)
-//
-//val HistoryScreenList = listOf<String>(
-//    NavDestinations.HistoryScreen.route,
-//    NavDestinations.HistoryScreen2.route,
-//    NavDestinations.HistoryScreen3.route
-//)
-//
-//val FavoritesScreenList = listOf<String>(
-//    NavDestinations.FavoritesScreen.route,
-//    NavDestinations.FavoritesScreen2.route,
-//    NavDestinations.FavoritesScreen3.route
-//)

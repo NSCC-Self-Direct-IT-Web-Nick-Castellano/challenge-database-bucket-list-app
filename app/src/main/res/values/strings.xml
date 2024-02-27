@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AndroidComposeScaffoldNav</string>
+    <string name="app_name">Bucket List</string>
+    <string name="back_button">Back</string>
 </resources>

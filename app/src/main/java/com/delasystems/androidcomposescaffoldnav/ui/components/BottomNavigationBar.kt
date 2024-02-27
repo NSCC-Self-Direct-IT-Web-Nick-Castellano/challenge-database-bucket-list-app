@@ -16,7 +16,7 @@ import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
 @Composable
 fun BottomNavigationBar(
     navController: NavHostController = rememberNavController(),
-    currentRoute: String?
+    currentRoute: String
 ) {
     BottomNavigation(
     ) {
