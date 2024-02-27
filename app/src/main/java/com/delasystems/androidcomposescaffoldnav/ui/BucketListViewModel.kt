@@ -39,6 +39,27 @@ class BucketListViewModel : ViewModel() {
         _bucketListItems.value = updatedItems
     }
 
+    fun unCompleteItem(item: BucketListItemModel) {
+        val updatedItems = _bucketListItems.value.map {
+            if (it == item) {
+                it.copy(isCompleted = false)
+            } else {
+                it
+            }
+        }
+        _bucketListItems.value = updatedItems
+    }
+
+    fun toggleItemCompleteStatus(item: BucketListItemModel) {
+        val updatedItems = _bucketListItems.value.map {
+            if (it == item) {
+                it.copy(isCompleted = !it.isCompleted)
+            } else {
+                it
+            }
+        }
+        _bucketListItems.value = updatedItems
+    }
     fun deleteItem(item: BucketListItemModel) {
         _bucketListItems.value = _bucketListItems.value.filterNot { it == item }
     }

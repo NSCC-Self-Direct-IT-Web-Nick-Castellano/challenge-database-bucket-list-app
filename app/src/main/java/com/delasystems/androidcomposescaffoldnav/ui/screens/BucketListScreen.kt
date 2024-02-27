@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.delasystems.androidcomposescaffoldnav.data.BucketListItemModel
 import com.delasystems.androidcomposescaffoldnav.ui.BucketListViewModel
+import com.delasystems.androidcomposescaffoldnav.ui.components.BucketListItemRow
 
 @Composable
 fun BucketListScreen(
@@ -57,30 +58,12 @@ fun BucketListScreen(
     ) {
 
         items(items = items, itemContent = {item ->
-            BucketListItemRow(item = item)
+            BucketListItemRow(
+                item = item,
+                onCheckboxChange = { viewModel.toggleItemCompleteStatus(item) }
+            )
         })
     }
 
 }
 
-@Composable
-fun BucketListItemRow(item: BucketListItemModel) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .clickable { /* Handle row click */ }
-    ) {
-        Text(
-            text = item.title,
-            style = MaterialTheme.typography.h4,
-            modifier = Modifier
-                .weight(1f)
-                .padding(end = 8.dp)
-        )
-        Checkbox(
-            checked = item.isCompleted,
-            onCheckedChange = { /* Handle checkbox state change */ }
-        )
-    }
-}
