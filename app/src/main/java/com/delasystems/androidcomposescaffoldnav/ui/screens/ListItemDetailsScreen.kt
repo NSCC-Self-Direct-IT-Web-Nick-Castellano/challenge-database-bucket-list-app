@@ -34,7 +34,6 @@ fun ListItemDetailsScreen(navController: NavController, viewModel: BucketListVie
             .fillMaxSize(1F)
             .padding(16.dp, 24.dp),
         verticalArrangement = Arrangement.SpaceBetween,
-//        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (selectedItem != null) {
             Column {
