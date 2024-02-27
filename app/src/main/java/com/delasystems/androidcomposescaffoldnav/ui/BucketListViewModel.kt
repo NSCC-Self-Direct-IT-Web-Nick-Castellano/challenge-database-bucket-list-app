@@ -1,5 +1,6 @@
 package com.delasystems.androidcomposescaffoldnav.ui
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,9 +8,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.delasystems.androidcomposescaffoldnav.data.BucketListDataSource
 import com.delasystems.androidcomposescaffoldnav.data.BucketListItemModel
+import java.lang.Exception
 
 // this holds the app state and makes modifications to it
 // using the data layer's initial data source and model
+@Suppress("UNREACHABLE_CODE")
 class BucketListViewModel : ViewModel() {
     private val _bucketListItems = mutableStateOf(listOf<BucketListItemModel>())
     val bucketListItems: MutableState<List<BucketListItemModel>> = _bucketListItems

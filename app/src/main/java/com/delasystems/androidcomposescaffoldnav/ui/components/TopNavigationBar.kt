@@ -11,19 +11,22 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import com.delasystems.androidcomposescaffoldnav.R
 
 @Composable
 fun TopNavigationBar(
-    currentRoute: String
+    currentRoute: String,
+    navController: NavController
 ) {
     TopAppBar (
         title = { Text(currentRoute) },
         modifier = Modifier
             .background(MaterialTheme.colors.primary)
         ,
+        // this button returns to the previous page
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { navController.navigateUp() }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = stringResource(id = R.string.back_button)

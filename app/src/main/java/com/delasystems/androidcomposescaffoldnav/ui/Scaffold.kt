@@ -56,7 +56,10 @@ fun AndroidComposeScaffoldNavApp() {
             )
         },
         topBar = {
-            TopNavigationBar(currentRoute = currentRoute.toString())
+            TopNavigationBar(
+                currentRoute = currentRoute.toString(),
+                navController = navController
+            )
         }
     ) {
         NavHost(
@@ -68,7 +71,7 @@ fun AndroidComposeScaffoldNavApp() {
                 BucketListScreen(navController=navController, viewModel = viewModel)
             }
             composable(route = NavDestinations.NewItemScreen.route) {
-                NewListItemScreen(navController)
+                NewListItemScreen(navController=navController, viewModel = viewModel)
             }
             composable(route = NavDestinations.ItemDetailsScreen.route) {
                 ListItemDetailsScreen(navController)
