@@ -3,6 +3,7 @@ package com.delasystems.androidcomposescaffoldnav.ui
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -64,8 +65,9 @@ fun AndroidComposeScaffoldNavApp() {
                 arguments = listOf(navArgument("itemId") { type = NavType.StringType })
             ) { backStackEntry ->
                 val itemId = backStackEntry.arguments?.getString("itemId")
-
-                ListItemDetailsScreen(navController, viewModel, itemId)
+                if (viewModel.bucketListItems.value.isEmpty() == false) {
+                    ListItemDetailsScreen(navController, viewModel, itemId)
+                }
             }
         }
     }
