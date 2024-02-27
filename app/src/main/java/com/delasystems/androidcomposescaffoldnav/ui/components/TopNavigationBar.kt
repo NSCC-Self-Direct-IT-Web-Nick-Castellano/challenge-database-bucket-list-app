@@ -35,11 +35,13 @@ fun TopNavigationBar(
         ,
         // this button returns to the previous page
         navigationIcon = {
-            IconButton(onClick = { navController.navigateUp() }) {
-                Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back_button)
-                )
+            if (navController.previousBackStackEntry != null) {
+                IconButton(onClick = { navController.navigateUp() }) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = stringResource(id = R.string.back_button)
+                    )
+                }
             }
         }
     )
