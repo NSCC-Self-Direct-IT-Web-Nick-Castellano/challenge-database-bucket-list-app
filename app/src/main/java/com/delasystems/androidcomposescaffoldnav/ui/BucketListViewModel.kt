@@ -75,6 +75,10 @@ class BucketListViewModel : ViewModel() {
 
     // get the list item by id
     fun getBucketListItemById(itemIndex: Int): BucketListItemModel? {
-        return bucketListItems.value.get(itemIndex)
+        if (itemIndex < bucketListItems.value.size) {
+            return bucketListItems.value.get(itemIndex)
+        } else {
+            return BucketListItemModel(title = "", description = "")
+        }
     }
 }

@@ -19,6 +19,7 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 */
 package com.delasystems.androidcomposescaffoldnav.ui.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,22 +36,34 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.delasystems.androidcomposescaffoldnav.R
 import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
 import com.delasystems.androidcomposescaffoldnav.ui.BucketListViewModel
+
+
 
 @Composable
 fun NewListItemScreen(
     navController: NavController,
     viewModel: BucketListViewModel
 ) {
+
+    var errorMessaage by remember { mutableStateOf("") }
+
     Column(
+//        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+
     ) {
         Text(
             text = "New List Item",
@@ -100,25 +113,41 @@ fun NewListItemScreen(
 
         Button(
             onClick = {
-                // Handle button click (e.g., save new item)
-                viewModel.addItem(
-                    title=title,
-                    description=description
-                )
+                if (title.isNotEmpty() && description.isNotEmpty()) {
+                    // Handle button click (e.g., save new item)
+                    viewModel.addItem(
+                        title = title,
+                        description = description
+                    )
 
-                // after we are done submitting, return to the bucket list screen
-                navController.navigate(
-                    NavDestinations.ListScreen.route
-                )
-
+                    // after we are done submitting, return to the bucket list screen
+                    navController.navigate(
+                        NavDestinations.ListScreen.route
+                    )
+                } else {
+//                    val newErrorMessage: String = stringResource(id = R.string.new_list_item_empty_form_error)
+                    errorMessaage = EMPTY_FIELDS_ERROR_MSG
+                }
 
             },
-            modifier = Modifier.align(Alignment.End)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
             Text("Save")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = errorMessaage,
+            style = MaterialTheme.typography.subtitle1,
+            color = Color.Red,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+
+
+        )
     }
 }
 
 private const val MAX_DESCRIPTION_LENGTH = 200 // Maximum number of characters allowed in the description
 private const val MAX_TITLE_LENGTH = 50 // Maximum number of characters allowed in the description
+private const val EMPTY_FIELDS_ERROR_MSG = "Please fill all the required fields" // Maximum number of characters allowed in the description

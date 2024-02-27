@@ -29,6 +29,7 @@ fun ListItemDetailsScreen(navController: NavController, viewModel: BucketListVie
     val selectedItem = itemId?.let { viewModel.getBucketListItemById(it.toInt()) }
 
 
+
     Column(
         modifier = Modifier
             .fillMaxSize(1F)
