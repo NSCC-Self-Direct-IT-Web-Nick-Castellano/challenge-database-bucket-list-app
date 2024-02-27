@@ -13,13 +13,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 
 @Composable
-fun ListItemDetailsScreen(navController: NavController) {
+fun ListItemDetailsScreen(
+    navController: NavController
+) {
 
-    Column(        modifier = Modifier
+       Column(        modifier = Modifier
         .fillMaxSize()
         .background(Color.Transparent),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
         Text(text = "List Item Details Screen",

@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -44,6 +45,9 @@ fun AndroidComposeScaffoldNavApp() {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
 
+    // initialize the viewModel
+    val viewModel: BucketListViewModel = viewModel()
+
     Scaffold(
         bottomBar = {
             BottomNavigationBar(
@@ -61,7 +65,7 @@ fun AndroidComposeScaffoldNavApp() {
             startDestination = NavDestinations.ListScreen.route
         ) {
             composable(route = NavDestinations.ListScreen.route) {
-                BucketListScreen(navController)
+                BucketListScreen(navController=navController, viewModel = viewModel)
             }
             composable(route = NavDestinations.NewItemScreen.route) {
                 NewListItemScreen(navController)
