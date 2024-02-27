@@ -19,7 +19,7 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 */
 package com.delasystems.androidcomposescaffoldnav.ui.screens
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,21 +28,22 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
-import com.delasystems.androidcomposescaffoldnav.ui.misc.Attribution
-import com.delasystems.androidcomposescaffoldnav.ui.misc.Background
 
 @Composable
-fun FavoritesScreen(navController: NavController) {
-    Background()
-    Column( modifier = Modifier.fillMaxSize(),
+fun NewListItemScreen(navController: NavController) {
+
+    Column(        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Transparent),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
-        Attribution()
-        Text(text = "Favorites Screen 1",
+        Text(text = "New List Item Screen",
             style = MaterialTheme.typography.h4,
-            modifier = Modifier.clickable { navController.navigate(NavDestinations.FavoritesScreen2.route) })
+            modifier = Modifier
+        )
     }
 }

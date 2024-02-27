@@ -35,10 +35,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.delasystems.androidcomposescaffoldnav.ui.theme.AndroidComposeScaffoldNavTheme
-import com.delasystems.androidcomposescaffoldnav.navigation.FavoritesScreenList
-import com.delasystems.androidcomposescaffoldnav.navigation.HistoryScreenList
+//import com.delasystems.androidcomposescaffoldnav.navigation.FavoritesScreenList
+//import com.delasystems.androidcomposescaffoldnav.navigation.HistoryScreenList
 import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
-import com.delasystems.androidcomposescaffoldnav.navigation.SearchScreenList
+//import com.delasystems.androidcomposescaffoldnav.navigation.SearchScreenList
+import com.delasystems.androidcomposescaffoldnav.ui.AndroidComposeScaffoldNavApp
 import com.delasystems.androidcomposescaffoldnav.ui.screens.*
 
 class MainActivity : ComponentActivity() {
@@ -53,88 +54,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     AndroidComposeScaffoldNavApp()
                 }
-            }
-        }
-    }
-}
-
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-@Composable
-private fun AndroidComposeScaffoldNavApp() {
-    val navController = rememberNavController()
-    Scaffold(
-        bottomBar = {
-            BottomNavigation(
-            ) {
-                val backStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = backStackEntry?.destination?.route
-                BottomNavigationItem(
-                    onClick = { navController.navigate(NavDestinations.SearchScreen.route) },
-                    icon = { Icon(painterResource(id = R.drawable.ic_baseline_search_24),
-                        contentDescription = "Search")},
-                    label = { Text(text = "Search")},
-                    alwaysShowLabel = true,
-                    selectedContentColor = Color.White,
-                    unselectedContentColor = Color.White.copy(0.4f),
-                    selected = SearchScreenList.contains(currentRoute)
-                )
-                BottomNavigationItem(
-                    onClick = { navController.navigate(NavDestinations.HistoryScreen.route) },
-                    icon = { Icon(painterResource(id = R.drawable.ic_baseline_history_24),
-                        contentDescription = "History")},
-                    label = { Text(text = "History")},
-                    alwaysShowLabel = true,
-                    selectedContentColor = Color.White,
-                    unselectedContentColor = Color.White.copy(0.4f),
-                    selected = HistoryScreenList.contains(currentRoute)
-                )
-                BottomNavigationItem(
-                    onClick = { navController.navigate(NavDestinations.FavoritesScreen.route)},
-                    icon = { Icon(painterResource(id = R.drawable.ic_baseline_favorite_border_24),
-                        contentDescription = "Favorites")},
-                    label = { Text(text = "Favorites")},
-                    alwaysShowLabel = true,
-                    selectedContentColor = Color.White,
-                    unselectedContentColor = Color.White.copy(0.4f),
-                    selected = FavoritesScreenList.contains(currentRoute)
-                )
-            }
-        }
-    ) {
-        NavHost(
-            modifier = Modifier.fillMaxSize(),
-            navController = navController,
-            startDestination = NavDestinations.SearchScreen.route
-        ) {
-            composable(route = NavDestinations.SearchScreen.route) {
-                SearchScreen(navController)
-            }
-            composable(route = NavDestinations.HistoryScreen.route) {
-                HistoryScreen(navController)
-            }
-            composable(route = NavDestinations.FavoritesScreen.route) {
-                FavoritesScreen(navController)
-            }
-
-            composable(route = NavDestinations.SearchScreen2.route) {
-                SearchScreen2(navController)
-            }
-            composable(route = NavDestinations.SearchScreen3.route) {
-                SearchScreen3(navController)
-            }
-
-            composable(route = NavDestinations.HistoryScreen2.route) {
-                HistoryScreen2(navController)
-            }
-            composable(route = NavDestinations.HistoryScreen3.route) {
-                HistoryScreen3(navController)
-            }
-
-            composable(route = NavDestinations.FavoritesScreen2.route) {
-                FavoritesScreen2(navController)
-            }
-            composable(route = NavDestinations.FavoritesScreen3.route) {
-                FavoritesScreen3(navController)
             }
         }
     }
