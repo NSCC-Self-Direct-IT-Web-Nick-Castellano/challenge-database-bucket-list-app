@@ -10,6 +10,6 @@ class BucketListApplication: Application() {
     // initiate the app container
     override fun onCreate() {
         super.onCreate()
-        container = DefaultAppContainer()
+        container = DefaultAppContainer(this)
     }
 }
