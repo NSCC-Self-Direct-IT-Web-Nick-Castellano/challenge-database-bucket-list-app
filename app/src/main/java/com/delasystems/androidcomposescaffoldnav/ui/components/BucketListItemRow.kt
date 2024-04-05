@@ -14,14 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.delasystems.androidcomposescaffoldnav.data.BucketListItemModel
+import com.delasystems.androidcomposescaffoldnav.data.models.BucketListItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BucketListItemRow(
-    item: BucketListItemModel,
-    onCheckboxChange: (BucketListItemModel) -> Unit,
-    onItemClick: (BucketListItemModel) -> Unit,
+    item: BucketListItem,
+    onCheckboxChange: (BucketListItem) -> Unit,
+    onItemClick: (BucketListItem) -> Unit,
 ) {
 
 

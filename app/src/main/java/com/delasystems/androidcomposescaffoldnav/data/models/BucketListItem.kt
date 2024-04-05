@@ -1,6 +1,6 @@
-package com.delasystems.androidcomposescaffoldnav.data
+package com.delasystems.androidcomposescaffoldnav.data.models
 
-data class BucketListItemModel(
+data class BucketListItem(
     val title: String,
     val description: String,
     val isCompleted: Boolean = false,
