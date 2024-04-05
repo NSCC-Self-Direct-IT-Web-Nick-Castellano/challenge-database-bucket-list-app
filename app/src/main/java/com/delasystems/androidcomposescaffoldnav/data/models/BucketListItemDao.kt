@@ -38,7 +38,7 @@ interface BucketListItemDao {
     /**
      * Get a list of all the bucket list items
      */
-    @Query("SELECT * from bucket_list_items ORDER BY title ASC")
+    @Query("SELECT * from bucket_list_items ")
     fun getAllItems(): Flow<List<BucketListItem>>
 
 }

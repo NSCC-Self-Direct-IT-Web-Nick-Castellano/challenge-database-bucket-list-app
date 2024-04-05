@@ -24,18 +24,18 @@ import com.delasystems.androidcomposescaffoldnav.ui.screens.ListItemDetailsScree
 import com.delasystems.androidcomposescaffoldnav.ui.screens.NewListItemScreen
 
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @Composable
 fun AndroidComposeScaffoldNavApp(
-//     appContainer: AppContainer
-    viewModel: BucketListViewModel
+     appContainer: AppContainer
+//    viewModel: BucketListViewModel
 ) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
 
-//    // initialize the viewModel
-//    val viewModel: BucketListViewModel = BucketListViewModel(appContainer.bucketListItemRepository)
+    // initialize the viewModel
+    val viewModel = BucketListViewModel(appContainer.bucketListItemRepository)
 
     Scaffold(
         bottomBar = {
@@ -71,7 +71,7 @@ fun AndroidComposeScaffoldNavApp(
             ) { backStackEntry ->
                 val itemId = backStackEntry.arguments?.getString("itemId")
 
-                if (viewModel.bucketListItems.value.isEmpty() == false) {
+                if (viewModel.appUiState.value.bucketListItemList.isNotEmpty() && itemId != null) {
                     ListItemDetailsScreen(navController, viewModel, itemId)
                 } else {
                     Text("")

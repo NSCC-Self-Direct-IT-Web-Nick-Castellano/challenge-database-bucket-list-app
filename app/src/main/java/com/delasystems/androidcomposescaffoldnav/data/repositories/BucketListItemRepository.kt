@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
  * Repository that provides insert, update, delete, and retrieve of [BucketListItem] from a given data source.
  */
 interface BucketListItemRepository {
+
     /**
      * Retrieve all the items from the given data source.
      */

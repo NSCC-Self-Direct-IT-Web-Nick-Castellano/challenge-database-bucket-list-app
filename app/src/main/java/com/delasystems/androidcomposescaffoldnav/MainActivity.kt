@@ -34,13 +34,13 @@ import com.delasystems.androidcomposescaffoldnav.ui.theme.AndroidComposeScaffold
 class MainActivity : ComponentActivity() {
 
     // set the viewmodel
-    private lateinit var viewModel: BucketListViewModel
+//    private lateinit var viewModel: BucketListViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // create an instance of BucketListAppContainer
         val appContainer = (application as BucketListApplication).container
         // initialize the viewmodel
-        viewModel = BucketListViewModel(appContainer.bucketListItemRepository)
+//        viewModel = BucketListViewModel(appContainer.bucketListItemRepository)
 
 
         setContent {
@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background,
                 ) {
                     AndroidComposeScaffoldNavApp(
-                        viewModel = viewModel
+                        appContainer = appContainer
                     )
                 }
             }

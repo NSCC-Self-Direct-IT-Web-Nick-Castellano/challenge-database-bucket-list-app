@@ -73,7 +73,7 @@ fun ListItemDetailsScreen(navController: NavController, viewModel: BucketListVie
                         viewModel.deleteItem(item = selectedItem)
 
                         // Check if there are any remaining items in the list
-                        if (viewModel.bucketListItems.value.isEmpty()) {
+                        if (viewModel.appUiState.value.bucketListItemList.isEmpty()) {
                             // If there are no items remaining, navigate back to the list screen
                             navController.popBackStack()
                         } else {

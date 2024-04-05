@@ -19,25 +19,30 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 */
 package com.delasystems.androidcomposescaffoldnav.ui.screens
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.delasystems.androidcomposescaffoldnav.ui.BucketListViewModel
 import com.delasystems.androidcomposescaffoldnav.ui.components.BucketListItemRow
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun BucketListScreen(
     navController: NavController,
     viewModel: BucketListViewModel
 ) {
     // use the view model to initialize the data and observe the
-    // bucket list changes
-    val items = viewModel.bucketListItems.value
+    val appViewModelState by viewModel.appUiState.collectAsState()
+
 
     LazyColumn (
         modifier = Modifier
@@ -45,14 +50,14 @@ fun BucketListScreen(
             .background(Color.Transparent),
     ) {
 
-        items(items = items, itemContent = {item ->
+        items(items = appViewModelState.bucketListItemList, key = { item -> item.id },
+            itemContent = {item ->
             // get the item id
             BucketListItemRow(
                 item = item,
                 onCheckboxChange = { viewModel.toggleItemCompleteStatus(item) },
                 // we use this custom route to dynamically navigate to the detail page of list item
                 onItemClick = {
-//                    Log.d("UI_Event", "Clicked on a list item")
 
                     viewModel.navigateToItemDetails(
                         navController = navController,
