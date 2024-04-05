@@ -4,14 +4,19 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.delasystems.androidcomposescaffoldnav.data.AppContainer
 import com.delasystems.androidcomposescaffoldnav.data.datasources.BucketListDataSource
 import com.delasystems.androidcomposescaffoldnav.data.models.BucketListItem
+import com.delasystems.androidcomposescaffoldnav.data.repositories.BucketListItemRepository
 import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
 
 // this holds the app state and makes modifications to it
 // using the data layer's initial data source and model
 @Suppress("UNREACHABLE_CODE")
-class BucketListViewModel : ViewModel() {
+class BucketListViewModel(
+    private val bucketListItemRepository: BucketListItemRepository
+) : ViewModel() {
+
     private val _bucketListItems = mutableStateOf(listOf<BucketListItem>())
     val bucketListItems: MutableState<List<BucketListItem>> = _bucketListItems
 

@@ -11,11 +11,13 @@ interface AppContainer {
 class DefaultAppContainer(
     private val context: Context
 ) : AppContainer {
+
+    private val database = BucketListDatabase.getDatabase(context)
+
     override val bucketListItemRepository: BucketListItemRepository by lazy {
         // OfflineBucketListItemRepository(bucketListItemDao)
         OfflineBucketListItemRepository(
-            BucketListDatabase.getDatabase(context).bucketListItemDao()
-
+            database.bucketListItemDao()
         )
     }
 

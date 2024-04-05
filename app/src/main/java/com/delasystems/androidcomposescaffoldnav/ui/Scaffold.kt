@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.delasystems.androidcomposescaffoldnav.data.AppContainer
 import com.delasystems.androidcomposescaffoldnav.navigation.NavDestinations
 import com.delasystems.androidcomposescaffoldnav.ui.components.BottomNavigationBar
 import com.delasystems.androidcomposescaffoldnav.ui.components.TopNavigationBar
@@ -25,13 +26,16 @@ import com.delasystems.androidcomposescaffoldnav.ui.screens.NewListItemScreen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun AndroidComposeScaffoldNavApp() {
+fun AndroidComposeScaffoldNavApp(
+//     appContainer: AppContainer
+    viewModel: BucketListViewModel
+) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
 
-    // initialize the viewModel
-    val viewModel: BucketListViewModel = viewModel()
+//    // initialize the viewModel
+//    val viewModel: BucketListViewModel = BucketListViewModel(appContainer.bucketListItemRepository)
 
     Scaffold(
         bottomBar = {

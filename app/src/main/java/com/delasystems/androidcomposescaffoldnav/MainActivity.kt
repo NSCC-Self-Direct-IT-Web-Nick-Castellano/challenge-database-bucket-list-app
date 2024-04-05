@@ -26,12 +26,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.delasystems.androidcomposescaffoldnav.data.DefaultAppContainer
 import com.delasystems.androidcomposescaffoldnav.ui.AndroidComposeScaffoldNavApp
+import com.delasystems.androidcomposescaffoldnav.ui.BucketListViewModel
 import com.delasystems.androidcomposescaffoldnav.ui.theme.AndroidComposeScaffoldNavTheme
 
 class MainActivity : ComponentActivity() {
+
+    // set the viewmodel
+    private lateinit var viewModel: BucketListViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // create an instance of BucketListAppContainer
+        val appContainer = (application as BucketListApplication).container
+        // initialize the viewmodel
+        viewModel = BucketListViewModel(appContainer.bucketListItemRepository)
+
+
         setContent {
             AndroidComposeScaffoldNavTheme {
                 Surface(
@@ -39,7 +50,9 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize(),
                     color = MaterialTheme.colors.background,
                 ) {
-                    AndroidComposeScaffoldNavApp()
+                    AndroidComposeScaffoldNavApp(
+                        viewModel = viewModel
+                    )
                 }
             }
         }

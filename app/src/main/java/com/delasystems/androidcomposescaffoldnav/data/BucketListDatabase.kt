@@ -17,14 +17,15 @@ abstract class BucketListDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): BucketListDatabase {
             return Instance ?: synchronized(this) {
-                Room.databaseBuilder(
+                val instance = Room.databaseBuilder(
                     context,
                     BucketListDatabase::class.java,
                     "bucket_list_database"
                 )
 //                    .fallbackToDestructiveMigration()
                     .build()
-                    .also { Instance = it }
+                Instance = instance
+                instance
 
             }
         }
